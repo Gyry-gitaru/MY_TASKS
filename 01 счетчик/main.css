@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.counter {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.minus {
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 20%;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.zero {
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 20%;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.plus {
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 20%;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.number {
+    font-size: 50px;
+}
+.z {
+    display: flex;
+    margin: 8px 0 0 105px;
+    width: 150px;
+}
