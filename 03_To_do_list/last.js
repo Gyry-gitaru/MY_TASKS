@@ -1,51 +1,58 @@
-const task = document.querySelector(".block_two");
-const inputToDo = document.querySelector("#Do");
-const btn = document.querySelector('.upper');
+let listTodo = [];
+const STORAGE_NAME = "todos";
 
-let ID = 0;
-const mainArray = [];
-console.log(mainArray)
+const generateToDoList = (list) => {
+    const newList = list.map((item) => 
+        `<div class="item">
+            <div onclick="deleteTodo('${item.id}')" class="delete"></div>
+            <input class="completed ${item.completed && "active"}" onclick="checkedList(${item.id})" type="checkbox" ${item.completed && "checked"}>
+            <p>${item.text}</p>
+        </div>`
+    ).join('');
+    localStorage.setItem(STORAGE_NAME, JSON.stringify(list));
+    document.querySelector('.container_todo').innerHTML = newList;
+};
 
-const myStorage = (array) => {
-    let storageToDo = localStorage.getItem(`array || '[]'`);
-    if(!storageToDo) localStorage.setItem(`array`, JSON.stringify(array));
-}
-// myStorage(mainArray);
+const createTodoList = () => {
+    const text = document.querySelector("#Do").value;
+    document.querySelector("#Do").value = '';
 
-const addToDoList = () => {
-    let globalID = ID++;
-    let text = inputToDo.value;
-    inputToDo.value = '';
+    const objList = {
+        id: Date.now(),
+        text,
+        completed: false
+    }
 
-    const mainObj = {
-        id: globalID,
-        text: text,
-        complate: false
-    };
-    console.log(mainObj)
+    listTodo.push(objList);
+    generateToDoList(listTodo);
+};
 
-    mainArray.push(mainObj);
-}
+document.querySelector('.btn').addEventListener('click', createTodoList);
 
-btn.addEventListener ('click', () => {
-    addToDoList();
-    myStorage(mainArray);
+const deleteTodo = (id) => {
+    let LIST = [];
+    listTodo.map((item) => {
+        if(item.id != id) {
+            LIST.push(item)
+        }
+    })
+    listTodo = LIST;
+    generateToDoList(listTodo);
+};
 
-}) 
+const checkedList = (id) => {
+    listTodo.map((item) => {
+        if(item.id === id) {
+            item.completed = !item.completed;
+        }
+    });
+    generateToDoList(listTodo);
+};
 
-// const renderTask = () => {
-
-// }
-// renderTask(mainArray);
-
-
-// const generateToDoList = () => {
-
-//     task.innerHTML = `
-//         <div class="item" >
-//             <div class="delate"></div>
-//             <input class="complited" type="checkbox" id="check">
-//             <p></p>
-//         </div>`
-
-// }
+const initApp = () => {
+    if (Array.isArray(JSON.parse(localStorage.getItem(STORAGE_NAME)))) {
+        listTodo = JSON.parse(localStorage.getItem(STORAGE_NAME));
+        generateToDoList(listTodo);
+    }
+};
+initApp();

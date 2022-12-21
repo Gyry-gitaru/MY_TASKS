@@ -2,9 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 body {
-    background: rosybrown;
+    background-image: url("https://www.pixelstalk.net/wp-content/uploads/2016/04/Beauty-night-sky-with-moon-stars-backgrounds.jpg");
+    height: 100%; 
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,8 +16,14 @@ body {
 }
 
 .title {
-    color: white;
-    font-size: 50px;
+    color: #8f0a37;
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 165px; line-height: 160px; 
+    font-weight: normal; 
+    margin-bottom: 0px; 
+    margin-top: 40px; 
+    text-align: center; 
+    text-shadow: 0 1px 1px #fff;
 }
 .block {
     border: 1px solid white;
@@ -26,27 +36,21 @@ body {
     border: none;
     padding: 10px;
 }
-plaseholder {
-    padding: 15px 10px;
-    color: grey;
-}
-.upper {
+.btn {
     padding: 10px 10px;
     color: rgb(0, 153, 255);
     border: none;
     background-color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
 }
-
-.block_two {
+.container_todo {
     border: 1px solid white;
     background: white;
     display: flex;
-    /* justify-content: space-between; */
     flex-direction: column;
     padding: 20px
 }
-
 .item {
     display: flex;
     gap: 10px;
@@ -64,43 +68,50 @@ plaseholder {
     align-items: center;
     text-decoration: line-through;
 }
-
 .active + p {
     text-decoration: line-through;
+    transition-duration: 5s;
+    transition-timing-function: linear;
+    transition-delay: 1s;
 }
-
-.delate {
+p {
+    display: inline-block;
+	width: 85%;
+	height: 2em;
+	float: right;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 2em;
+	position : relative;
+	color:#333;
+	letter-spacing:1px;
+}
+.delete {
     width: 10px;
     height: 10px;
     border: 1px solid red;
     background-color: red;
     position: relative;
-  transform:rotate(90deg);
-
+    transform:rotate(90deg);
 }
-
-.delate:before, .delate:after {
+.delete:before, .delete:after {
     content: "";
     position: absolute;
     z-index: -1;
     background: white;
     transform: rotate(45deg);
-  }
-  
-  .delate:before {
+}
+.delete:before {
     left: 50%;
     width: 30%;
     margin-left: -15%;
     height: 100%;
-  }
-  
- .delate:after {
+}
+.delete:after {
     top: 50%;
     height: 30%;
     margin-top: -15%;
     width: 100%;
-  }
-
+}
 .bottom {
     padding: 10px 10px;
     color: rgb(255, 0, 0);
